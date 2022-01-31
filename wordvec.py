@@ -133,7 +133,7 @@ class Lexicon:
         if plus:
             center_word_weight = [a + b for a, b in zip(center_word_weight, self.word_emb_dict[plus])]
         if minus:
-            center_word_weight = [a - b for a, b in zip(center_word_weight, self.word_emb_dict[plus])]
+            center_word_weight = [a - b for a, b in zip(center_word_weight, self.word_emb_dict[minus])]
 
         ranked_words = []
         for cur_word, cur_weight in self.word_emb_dict.items():
