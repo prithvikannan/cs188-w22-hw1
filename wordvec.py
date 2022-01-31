@@ -128,7 +128,17 @@ class Lexicon:
 
         ##################################################
         # TODO Coding Task 3 and 4
-        return []
+        # generate cosines
+        center_word_weight = self.word_emb_dict[word]
+        ranked_words = []
+        for cur_word, cur_weight in self.word_emb_dict.items():
+            if cur_word not in exclude_w:
+                cosine = cossim(center_word_weight, cur_weight)
+                ranked_words.append((cur_word, cosine))
+        # sort by similarity
+        ranked_words.sort(key = lambda x: x[1], reverse=True) 
+
+        return ranked_words[:n]
         ##################################################
 
 def cossim(v1, v2):
