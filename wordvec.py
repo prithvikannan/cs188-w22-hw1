@@ -81,6 +81,13 @@ class Lexicon:
         # Read in content of the embedding file and save 
         # the word embeddings to some data structure
         ##################################################
+        with open(file) as f:
+            lines = f.readlines()
+            for line in lines:
+                x = line.split(' ')
+                word = x[0]
+                weights = [float(weight) for weight in x[1:]]
+                self.word_emb_dict[word] = weights
 
     def get_vector(self, word: String):
         """Return word vector of a specific word"""
@@ -88,7 +95,7 @@ class Lexicon:
         # TODO Coding Task 1
         # You might want to have a dedicated function
         # to return word vector of a specific word
-        return []
+        return self.word_emb_dict[word]
         ##################################################
 
     def find_nearest_words(self, word, exclude_w, *, n = 5, plus: Optional[str] = None, minus: Optional[str] = None):
@@ -133,7 +140,17 @@ def cossim(v1, v2):
     
     ##################################################
     # TODO Coding Task 2
-    return 0
+    DIM = 100
+    v1_dot_v2 = 0
+    v1_mag = 0
+    v2_mag = 0
+    for i in range(DIM):
+        v1_dot_v2 += v1[i] * v2[i]
+        v1_mag += v1[i] * v1[i]    
+        v2_mag += v2[i] * v2[i]    
+
+    v1_mag, v2_mag = np.sqrt([v1_mag, v2_mag])
+    return v1_dot_v2 / (v1_mag * v2_mag)
     ##################################################
 
 def main():
