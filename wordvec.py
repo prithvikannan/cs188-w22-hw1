@@ -130,6 +130,11 @@ class Lexicon:
         # TODO Coding Task 3 and 4
         # generate cosines
         center_word_weight = self.word_emb_dict[word]
+        if plus:
+            center_word_weight = [a + b for a, b in zip(center_word_weight, self.word_emb_dict[plus])]
+        if minus:
+            center_word_weight = [a - b for a, b in zip(center_word_weight, self.word_emb_dict[plus])]
+
         ranked_words = []
         for cur_word, cur_weight in self.word_emb_dict.items():
             if cur_word not in exclude_w:
