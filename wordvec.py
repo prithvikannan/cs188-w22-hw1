@@ -1,6 +1,6 @@
 # CS188 NLP Winter 2022 HW1
-# Name: ____________
-# Email: _________@ucla.edu
+# Name: Prithvi Kannan
+# Email: pkannan@ucla.edu
 
 from __future__ import annotations
 import argparse
